@@ -1,6 +1,6 @@
 class Admin::ProductsController < ApplicationController
    #login for admin product page
-   http_basic_authenticate_with name: 'username', password: 'password'
+   http_basic_authenticate_with name: ENV['USERNAME'], password: ENV['PASSWORD']
 
 
   def index
