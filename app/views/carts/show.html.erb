@@ -3,7 +3,11 @@
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
-
+  <% if cart.length < 1%>
+  <%= "You have no items in your cart, please navigate to the " %>
+  <%= link_to "Home Page", "/" %>
+  <%= "in order to add new items to your cart."%>
+  <% else %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -45,6 +49,7 @@
           data-email="kvirani@gmail.com"
           data-currency="cad">
         </script>
+      <% end %>
       <% end %>
     </div>
   </div>
