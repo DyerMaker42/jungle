@@ -25,4 +25,15 @@ class CartsController < ApplicationController
     update_cart cart
   end
 
+#  if want to restrict access to being logged in  
+#before_filter :authorize
+
+#   def cool
+#   end
+
+#   def free
+#   end
+
+# end
+
 end
