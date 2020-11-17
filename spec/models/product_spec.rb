@@ -20,6 +20,19 @@ RSpec.describe Product, type: :model do
       expect(@product).to be_valid
     end
 
+    it 'should contain a name' do
+      @category = Category.new(name:"shoes")
+      @product = Product.new(
+        id:200,
+        name:nil, 
+        price_cents: 2000, 
+        quantity: 10, 
+        category: @category
+      )
+      expect(@product).to_not be_valid
+      expect(@product.errors.full_messages).to eq ["Name can't be blank"]
+    end
+
   
       
   end
