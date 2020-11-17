@@ -7,6 +7,21 @@ RSpec.describe Product, type: :model do
     it 'should create products' do
       expect(Product.new).to be_a Product
     end
-  end
   
+    it 'is valid and with valid attributes' do
+      @category = Category.new(name:"shoes")
+      @product = Product.new(
+        id:200,
+        name:"Red Shoe", 
+        price_cents: 2000, 
+        quantity: 10, 
+        category: @category
+      )
+      expect(@product).to be_valid
+    end
+
+  
+      
+  end
+
 end
