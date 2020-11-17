@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 # receving for and creating a new users within parametersg
   def create
-    user = User.new(user_params)
+    user = User.create(user_params)
     if user.save
       sesion[:user_id] = user.id
       redirect_to '/'

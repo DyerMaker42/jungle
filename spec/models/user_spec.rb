@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+
+  it 'should create a user' do
+    expect(User.create).to be_a User
+  end
 end
