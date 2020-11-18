@@ -40,6 +40,23 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include ("Password can't be blank")
     end
 
+    it 'is not valid if email entered already exists' do
+      @user = User.create(
+        first_name: "testy", 
+        last_name: "test",
+        email: "test1@test.com", 
+        password: "123", 
+        password_confirmation: "123")
+      @user1 = User.create(
+        first_name: "testy", 
+        last_name: "test",
+        email: "test1@test.com", 
+        password: "123", 
+        password_confirmation: "123")
+        expect(@user).to be_valid
+        expect(@user1).to_not be_valid
+      expect(@user1.errors.full_messages).to eq ["Email has already been taken"]
+    end
 
 
   end
