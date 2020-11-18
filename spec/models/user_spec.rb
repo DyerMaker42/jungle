@@ -116,6 +116,21 @@ RSpec.describe User, type: :model do
       invalid = User.authenticate_with_credentials("alpha@omega.net", "password1")
       expect(invalid).to_not eq (@user)
     end
+  
+    it 'should  authenticate if credentials do match even if case sensitive' do
+      @user = User.create(
+        first_name: "test", 
+        last_name: "Johnson",
+        email: "alpha@omega.net", 
+        password: "password", 
+        password_confirmation: "password")
+      @user.save
+      valid = User.authenticate_with_credentials("Alpha@Omega.net", "password")
+      expect(valid).to eq (@user)
+    end
+  
+  
+  
   end
 
 end
