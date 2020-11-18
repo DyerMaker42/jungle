@@ -45,14 +45,14 @@ RSpec.describe User, type: :model do
         first_name: "testy", 
         last_name: "test",
         email: "test1@test.com", 
-        password: "123", 
-        password_confirmation: "123")
+        password:  "secure_password", 
+        password_confirmation: "secure_password")
       @user1 = User.create(
         first_name: "testy", 
         last_name: "test",
         email: "test1@test.com", 
-        password: "123", 
-        password_confirmation: "123")
+        password: "secure_password", 
+        password_confirmation: "secure_password")
         expect(@user).to be_valid
         expect(@user1).to_not be_valid
       expect(@user1.errors.full_messages).to eq ["Email has already been taken"]
@@ -91,6 +91,15 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to eq ["Email can't be blank"]
     end
 
-
+    it "should have a password greater than or equal to 8 characters" do
+      @user = User.create(
+        first_name: "test", 
+        last_name: "Johnson",
+        email: "test1@Johnson.com", 
+        password: "uhoh", 
+        password_confirmation: "uhoh")
+        expect(@user).to_not be_valid
+        expect(@user.errors.full_messages).to include "Password is too short (minimum is 8 characters)"
+      end
   end
 end
