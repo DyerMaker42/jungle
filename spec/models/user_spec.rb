@@ -69,6 +69,16 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to eq ["First name can't be blank"]
     end
 
+    it 'is not valid if no last name ' do
+      @user = User.create(
+        first_name: "test", 
+        last_name: nil,
+        email: "test1@test.com", 
+        password: "password", 
+        password_confirmation: "password")
+      expect(@user).to_not be_valid
+      expect(@user.errors.full_messages).to eq ["Last name can't be blank"]
+    end
    
 
 
