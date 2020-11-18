@@ -129,6 +129,17 @@ RSpec.describe User, type: :model do
       expect(valid).to eq (@user)
     end
   
+    it 'should  authenticate if credentials do match even if extra spaces around email' do
+      @user = User.create(
+        first_name: "test", 
+        last_name: "Johnson",
+        email: "alpha@omega.net", 
+        password: "password", 
+        password_confirmation: "password")
+      @user.save
+      valid = User.authenticate_with_credentials(" Alpha@Omega.net ", "password")
+      expect(valid).to eq (@user)
+    end
   
   
   end
