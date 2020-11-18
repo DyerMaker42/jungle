@@ -58,6 +58,19 @@ RSpec.describe User, type: :model do
       expect(@user1.errors.full_messages).to eq ["Email has already been taken"]
     end
 
+    it 'is not valid if no first name ' do
+      @user = User.create(
+        first_name: nil, 
+        last_name: "test",
+        email: "test1@test.com", 
+        password: "password", 
+        password_confirmation: "password")
+      expect(@user).to_not be_valid
+      expect(@user.errors.full_messages).to eq ["First name can't be blank"]
+    end
+
+   
+
 
   end
 end
